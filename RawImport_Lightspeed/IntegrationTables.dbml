@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DMSIntegration" Class="IntegrationTablesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=devdb.optionsoft.net;Initial Catalog=DMSIntegration;User ID=otidb" SettingsObjectName="RawImport_Lightspeed.Properties.Settings" SettingsPropertyName="DMSIntegrationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ParentCompany" Member="ParentCompanies">
+    <Type Name="ParentCompany">
+      <Column Name="ID" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Column Name="ParentCompanyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyIntegration" Member="CompanyIntegrations">
+    <Type Name="CompanyIntegration">
+      <Column Name="ParentCompanyId" Type="System.String" DbType="Char(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IntegrationType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RemoteDealershipId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HasDMSReporting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasPivotalReporting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InPivotalStaging" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyIntegration_MasterDMSImport" Member="MasterDMSImports" ThisKey="ParentCompanyId" OtherKey="ParentCompanyId" Type="MasterDMSImport" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DMSImport" Member="DMSImports">
+    <Type Name="DMSImport">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MasterDMSImportID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImportInterval" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EarliestImportDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NextImportDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastImportDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="RunImport" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="DMSImportType_DMSImport" Member="DMSImportType" ThisKey="TypeID" OtherKey="ID" Type="DMSImportType" IsForeignKey="true" />
+      <Association Name="MasterDMSImport_DMSImport" Member="MasterDMSImport" ThisKey="MasterDMSImportID" OtherKey="ID" Type="MasterDMSImport" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DMSImportType" Member="DMSImportTypes">
+    <Type Name="DMSImportType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="DMSImportType_DMSImport" Member="DMSImports" ThisKey="ID" OtherKey="TypeID" Type="DMSImport" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MasterDMSImport" Member="MasterDMSImports">
+    <Type Name="MasterDMSImport">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ParentCompanyId" Type="System.String" DbType="Char(7) NOT NULL" CanBeNull="false" />
+      <Column Name="ImportInterval" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EarliestImportDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NextImportDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastImportDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="RunImport" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="MasterDMSImport_DMSImport" Member="DMSImports" ThisKey="ID" OtherKey="MasterDMSImportID" Type="DMSImport" />
+      <Association Name="CompanyIntegration_MasterDMSImport" Member="CompanyIntegration" ThisKey="ParentCompanyId" OtherKey="ParentCompanyId" Type="CompanyIntegration" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MessageLog" Member="MessageLogs">
+    <Type Name="MessageLog">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ParentCompanyId" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Column Name="RequestParameter" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ConversationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LogTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MessageType" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

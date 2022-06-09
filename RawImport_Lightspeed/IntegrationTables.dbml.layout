@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13" name="IntegrationTables">
+  <DataContextMoniker Name="/IntegrationTablesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="0dbe20a5-263b-4688-99cb-ceb09804f004" absoluteBounds="5, 2, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/ParentCompany" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4da10db9-4b58-4ea0-8639-d509bdc8b507" absoluteBounds="5.015, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fd974c67-d3fd-48ff-8e26-d6998de84293" absoluteBounds="0.75, 5.125, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/CompanyIntegration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de6657b5-d161-41d0-a1e9-cc132389b085" absoluteBounds="0.765, 5.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="10392d8e-5e7f-4e93-b28f-fea89a2b3f87" absoluteBounds="6.25, 5, 2, 2.3478011067708326">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/DMSImport" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32c72e6e-a74c-4fc2-b166-562314ac01a0" absoluteBounds="6.265, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04cd57a5-47f4-4188-a412-7fa76ddcd5a7" absoluteBounds="3.5, 8.5, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/DMSImportType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ef2f7d1-4a95-430b-872f-f32247d450ba" absoluteBounds="3.515, 8.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="962b34ad-4ae6-4dee-a168-2b2814af5133" absoluteBounds="3.5, 5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/MasterDMSImport" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47fe0d2f-7c22-44b5-8226-511eabd1e485" absoluteBounds="3.515, 5.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 9.09699625651042); (7.25 : 9.09699625651042); (7.25 : 7.34780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/IntegrationTablesDataContext/DMSImportType/DMSImportType_DMSImport" />
+      <nodes>
+        <classShapeMoniker Id="04cd57a5-47f4-4188-a412-7fa76ddcd5a7" />
+        <classShapeMoniker Id="10392d8e-5e7f-4e93-b28f-fea89a2b3f87" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.07774983723958); (6.25 : 6.07774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/IntegrationTablesDataContext/MasterDMSImport/MasterDMSImport_DMSImport" />
+      <nodes>
+        <classShapeMoniker Id="962b34ad-4ae6-4dee-a168-2b2814af5133" />
+        <classShapeMoniker Id="10392d8e-5e7f-4e93-b28f-fea89a2b3f87" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.10659912109375); (3.5 : 6.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/IntegrationTablesDataContext/CompanyIntegration/CompanyIntegration_MasterDMSImport" />
+      <nodes>
+        <classShapeMoniker Id="fd974c67-d3fd-48ff-8e26-d6998de84293" />
+        <classShapeMoniker Id="962b34ad-4ae6-4dee-a168-2b2814af5133" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="32270846-5485-49ff-8d83-c6f0493cdf79" absoluteBounds="6.875, 10.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/IntegrationTablesDataContext/MessageLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4ec9705a-dc3c-42f5-8a63-6d559c2e0714" absoluteBounds="6.89, 11.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
